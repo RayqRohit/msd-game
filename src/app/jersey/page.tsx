@@ -127,7 +127,14 @@ export default function JerseyScreen() {
             <span className={styles.inputHint}>no. from 1-99</span>
           </div>
 
-          <Link href="/toss" className={styles.enterButton}>
+          <Link 
+            href={name.trim() && number.trim() ? "/toss" : "#"} 
+            className={styles.enterButton}
+            style={{ 
+              opacity: name.trim() && number.trim() ? 1 : 0.5, 
+              pointerEvents: name.trim() && number.trim() ? 'auto' : 'none' 
+            }}
+          >
             ENTER STADIUM
           </Link>
         </div>
