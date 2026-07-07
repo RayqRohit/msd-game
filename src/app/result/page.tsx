@@ -29,25 +29,45 @@ export default function Result() {
     if (!downloadRef.current) return;
     setIsDownloading(true);
     
-    // Wait for the UI to re-render without the buttons
-    setTimeout(async () => {
-      try {
-        const canvas = await html2canvas(downloadRef.current!, {
-          useCORS: true,
-          scale: 2,
-          backgroundColor: "#0b1120",
-        });
-        const dataUrl = canvas.toDataURL("image/png");
-        const link = document.createElement("a");
-        link.download = "mission-possible-result.png";
-        link.href = dataUrl;
-        link.click();
-      } catch (err) {
-        console.error("Failed to download image", err);
-      } finally {
-        setIsDownloading(false);
+    try {
+      const canvas = await html2canvas(downloadRef.current, {
+        useCORS: true,
+        scale: 2,
+        backgroundColor: "#0b1120",
+      });
+      
+      const dataUrl = canvas.toDataURL("image/png");
+      
+      // Use native share on iOS/Android for perfect mobile experience
+      if (navigator.share) {
+        try {
+          const blob = await (await fetch(dataUrl)).blob();
+          const file = new File([blob], "mission-possible-result.png", { type: "image/png" });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: "My Result",
+            });
+            setIsDownloading(false);
+            return;
+          }
+        } catch (e) {
+          console.log("Share skipped or failed", e);
+        }
       }
-    }, 100);
+
+      // Fallback for desktop / older browsers
+      const link = document.createElement("a");
+      link.download = "mission-possible-result.png";
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error("Failed to download image", err);
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   useEffect(() => {

@@ -190,7 +190,7 @@
 
 .confirmButton {
   position: absolute;
-  bottom: 40px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -199,7 +199,7 @@
   color: #000;
   font-weight: 900;
   font-family: 'Mona Sans Condensed', sans-serif;
-  font-size: 28px;
+  font-size: 25px;
   padding: 20px 10px;
   border: none;
   border-radius: 16px;

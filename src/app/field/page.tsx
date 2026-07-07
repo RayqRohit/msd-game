@@ -172,7 +172,7 @@ export default function FieldScreen() {
           })}
 
           {/* Container for initial layout of fielders */}
-          <div style={{ position: 'absolute', bottom: '116px', left: 0, width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end', zIndex: 20 }}>
+          <div style={{ position: 'absolute', bottom: '95px', left: 0, width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end', zIndex: 20 }}>
             {FIELDERS.map((f) => {
               const isPlaced = !!placed[f.id];
               return (
