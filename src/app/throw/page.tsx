@@ -1,19 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 
 type BallPosition = 'left' | 'center' | 'right';
 type BallPathMap = Partial<Record<BallPosition, BallPosition>>;
 
 export default function ThrowScreen() {
+  const router = useRouter();
   const [thrownBalls, setThrownBalls] = useState<BallPathMap>({});
   const [vanishedBalls, setVanishedBalls] = useState<BallPosition[]>([]);
   const [result, setResult] = useState<string | null>(null);
   
   const [swipeStart, setSwipeStart] = useState<{ x: number; y: number; ball: BallPosition } | null>(null);
+
+  useEffect(() => {
+    if (vanishedBalls.length === 3) {
+      setTimeout(() => {
+        router.push('/question');
+      }, 500); // Small delay before transition
+    }
+  }, [vanishedBalls, router]);
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>, ball: BallPosition) => {
     // If already thrown or vanished, ignore

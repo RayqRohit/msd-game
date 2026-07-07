@@ -18,14 +18,17 @@ export default function CatchScreen() {
     let timer: NodeJS.Timeout;
     if (isPlaying && timeLeft > 0) {
       timer = setInterval(() => {
-        setTimeLeft((prev) => prev - 1);
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            setIsPlaying(false);
+            setTimeout(() => {
+              router.push("/question");
+            }, 1500);
+            return 0;
+          }
+          return prev - 1;
+        });
       }, 1000);
-    } else if (timeLeft === 0 && isPlaying) {
-      setIsPlaying(false);
-      // Wait a short moment then redirect to the next random scenario
-      setTimeout(() => {
-        router.push("/scenario2");
-      }, 1500);
     }
     return () => clearInterval(timer);
   }, [isPlaying, timeLeft, router]);
