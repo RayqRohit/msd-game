@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
@@ -64,7 +66,21 @@ export default function Home() {
             <p className={styles.tagline}>
               Play, Score & Discover your inner inspiring mindset
             </p>
-            <Link href="/jersey" className={styles.startButton}>
+            <Link 
+              href="/jersey" 
+              className={styles.startButton}
+              onClick={() => {
+                try {
+                  if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                  } else if ((document.documentElement as any).webkitRequestFullscreen) {
+                    (document.documentElement as any).webkitRequestFullscreen();
+                  }
+                } catch (e) {
+                  console.error("Fullscreen failed", e);
+                }
+              }}
+            >
               START CHALLENGE
             </Link>
           </div>
