@@ -14,13 +14,13 @@ export default function ThrowScreen() {
   const [thrownBalls, setThrownBalls] = useState<BallPathMap>({});
   const [vanishedBalls, setVanishedBalls] = useState<BallPosition[]>([]);
   const [result, setResult] = useState<string | null>(null);
-  
+
   const [swipeStart, setSwipeStart] = useState<{ x: number; y: number; ball: BallPosition } | null>(null);
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>, ball: BallPosition) => {
     // If already thrown or vanished, ignore
     if (thrownBalls[ball] || vanishedBalls.includes(ball)) return;
-    
+
     // Capture pointer so we can track the drag even if it leaves the ball's boundaries
     e.currentTarget.setPointerCapture(e.pointerId);
     setSwipeStart({ x: e.clientX, y: e.clientY, ball });
@@ -28,14 +28,14 @@ export default function ThrowScreen() {
 
   const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>, ball: BallPosition) => {
     if (!swipeStart || swipeStart.ball !== ball) return;
-    
+
     e.currentTarget.releasePointerCapture(e.pointerId);
-    
+
     const deltaX = e.clientX - swipeStart.x;
     const deltaY = e.clientY - swipeStart.y;
-    
+
     setSwipeStart(null);
-    
+
     let isThrow = false;
     let isHit = false;
 
@@ -44,7 +44,7 @@ export default function ThrowScreen() {
       isThrow = true;
       // Skill-based swipe: if horizontal drift is less than half the vertical distance, it's a direct hit.
       isHit = Math.abs(deltaX) < Math.abs(deltaY) * 0.5;
-    } 
+    }
     // Check if it was a tap (very little movement)
     else if (Math.abs(deltaX) < 10 && Math.abs(deltaY) < 10) {
       isThrow = true;
@@ -54,10 +54,10 @@ export default function ThrowScreen() {
 
     if (isThrow) {
       const path = isHit ? 'center' : (Math.random() > 0.5 ? 'left' : 'right');
-      
+
       setThrownBalls((prev) => ({ ...prev, [ball]: path }));
       setResult(null); // Clear previous result instantly
-      
+
       // Animate for 800ms then show result
       setTimeout(() => {
         if (isHit) {
@@ -65,7 +65,7 @@ export default function ThrowScreen() {
         } else {
           setResult("MISS! 0\nRUNS");
         }
-        
+
         // Hide result and vanish the ball after 1.5 seconds
         setTimeout(() => {
           setResult(null);
@@ -79,8 +79,8 @@ export default function ThrowScreen() {
     <div className={styles.container}>
       {/* Background Layer */}
       <div className={styles.background}>
-        <Image 
-          src="/screen8-background.png" 
+        <Image
+          src="/screen8-background.png"
           alt="Stadium Background with Stumps"
           fill
           priority
@@ -93,17 +93,17 @@ export default function ThrowScreen() {
         {/* Top Bar with Back Button and Over Counter */}
         <div className={styles.topBar}>
           <Link href="/scenario2" className={styles.backButton}>
-            <Image 
-              src="/screen2-backbtn.png" 
-              alt="Back" 
-              width={44} 
-              height={44} 
+            <Image
+              src="/screen2-backbtn.png"
+              alt="Back"
+              width={44}
+              height={44}
               unoptimized
             />
           </Link>
           <div className={styles.overBadge}>
             <span className={styles.overText}>OVER</span>
-            <span className={styles.overNumber}>1/16</span>
+            <span className={styles.overNumber}>4/8</span>
           </div>
         </div>
 
@@ -124,23 +124,23 @@ export default function ThrowScreen() {
           </div>
 
           <div className={styles.ballsContainer}>
-            <div 
+            <div
               className={`${styles.ballWrapper} ${styles.ballLeft} ${thrownBalls['left'] ? (thrownBalls['left'] === 'center' ? styles.thrownCenter : styles.thrownLeft) + ' ' + styles.thrown : ''} ${vanishedBalls.includes('left') ? styles.vanished : ''}`}
               onPointerDown={(e) => handlePointerDown(e, 'left')}
               onPointerUp={(e) => handlePointerUp(e, 'left')}
             >
               <Image src="/screen6-bowl.png" alt="Cricket Ball Left" width={70} height={70} unoptimized draggable={false} />
             </div>
-            
-            <div 
+
+            <div
               className={`${styles.ballWrapper} ${styles.ballCenter} ${thrownBalls['center'] ? (thrownBalls['center'] === 'center' ? styles.thrownCenter : styles.thrownLeft) + ' ' + styles.thrown : ''} ${vanishedBalls.includes('center') ? styles.vanished : ''}`}
               onPointerDown={(e) => handlePointerDown(e, 'center')}
               onPointerUp={(e) => handlePointerUp(e, 'center')}
             >
               <Image src="/screen6-bowl.png" alt="Cricket Ball Center" width={70} height={70} unoptimized draggable={false} />
             </div>
-            
-            <div 
+
+            <div
               className={`${styles.ballWrapper} ${styles.ballRight} ${thrownBalls['right'] ? (thrownBalls['right'] === 'center' ? styles.thrownCenter : styles.thrownRight) + ' ' + styles.thrown : ''} ${vanishedBalls.includes('right') ? styles.vanished : ''}`}
               onPointerDown={(e) => handlePointerDown(e, 'right')}
               onPointerUp={(e) => handlePointerUp(e, 'right')}
@@ -148,7 +148,7 @@ export default function ThrowScreen() {
               <Image src="/screen6-bowl.png" alt="Cricket Ball Right" width={70} height={70} unoptimized draggable={false} />
             </div>
           </div>
-          
+
           {result && (
             <div className={styles.resultMessage}>
               {result.split('\n').map((line, i) => (
@@ -158,8 +158,8 @@ export default function ThrowScreen() {
           )}
 
           {/* Throw Button */}
-          <button 
-            className={styles.throwButton} 
+          <button
+            className={styles.throwButton}
             onClick={() => {
               if (Object.keys(thrownBalls).length === 3) {
                 router.push('/question4');
@@ -172,17 +172,17 @@ export default function ThrowScreen() {
                 // Button click counts as a tap (random chance)
                 const isHit = Math.random() > 0.5;
                 const path = isHit ? 'center' : (Math.random() > 0.5 ? 'left' : 'right');
-                
+
                 setThrownBalls((prev) => ({ ...prev, [nextBall]: path }));
                 setResult(null);
-                
+
                 setTimeout(() => {
                   if (isHit) {
                     setResult("+6 RUNS! DIRECT HIT!");
                   } else {
                     setResult("MISS! 0\nRUNS");
                   }
-                  
+
                   setTimeout(() => {
                     setResult(null);
                     setVanishedBalls((prev) => [...prev, nextBall]);

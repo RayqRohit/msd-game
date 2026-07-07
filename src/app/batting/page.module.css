@@ -113,7 +113,7 @@
   width: 100%;
   max-width: 400px;
   margin-top: auto;
-  margin-bottom: 40px;
+  margin-bottom: 176px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -167,7 +167,7 @@
 
 .tapInstruction {
   color: #fff;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 800;
   text-transform: uppercase;
   text-align: center;
@@ -180,7 +180,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.8);
-  padding: 20px 40px;
+  padding: 20px;
   border-radius: 15px;
   border: 2px solid #ffd700;
   z-index: 20;

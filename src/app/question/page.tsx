@@ -51,15 +51,15 @@ export default function QuestionScreen() {
 
   const handleOptionClick = (index: number) => {
     // For now, after selecting an option, we can redirect back to scenario or the next part of the game
-    router.push("/batting"); 
+    router.push("/batting");
   };
 
   return (
     <div className={styles.container}>
       {/* Background Layer */}
       <div className={styles.background}>
-        <Image 
-          src="/questions-background.png" 
+        <Image
+          src="/questions-background.png"
           alt="Stadium Background"
           fill
           priority
@@ -72,17 +72,17 @@ export default function QuestionScreen() {
         {/* Top Bar with Back Button and Over Counter */}
         <div className={styles.topBar}>
           <Link href="/field" className={styles.backButton}>
-            <Image 
-              src="/screen2-backbtn.png" 
-              alt="Back" 
-              width={44} 
-              height={44} 
+            <Image
+              src="/screen2-backbtn.png"
+              alt="Back"
+              width={44}
+              height={44}
               unoptimized
             />
           </Link>
           <div className={styles.overBadge}>
             <span className={styles.overText}>OVER</span>
-            <span className={styles.overNumber}>1/16</span>
+            <span className={styles.overNumber}>7/8</span>
           </div>
         </div>
 
@@ -106,13 +106,13 @@ export default function QuestionScreen() {
 
           <div className={styles.optionsContainer}>
             {question.options.map((opt, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className={styles.optionButton}
                 onClick={() => handleOptionClick(i)}
               >
-                <Image 
-                  src={`/qbtn-${String.fromCharCode(97 + i)}.png`} 
+                <Image
+                  src={`/qbtn-${String.fromCharCode(97 + i)}.png`}
                   alt={`Option ${String.fromCharCode(65 + i)}`}
                   fill
                   className={styles.optionBg}

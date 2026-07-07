@@ -58,8 +58,8 @@ export default function CatchScreen() {
     <div className={styles.container}>
       {/* Background Layer */}
       <div className={styles.background}>
-        <Image 
-          src="/screen6-background.png" 
+        <Image
+          src="/screen6-background.png"
           alt="Stadium Background"
           fill
           priority
@@ -70,8 +70,8 @@ export default function CatchScreen() {
 
       {/* Background Overlay */}
       <div className={styles.overlayContainer}>
-        <Image 
-          src="/screen6-bg-overlay.png" 
+        <Image
+          src="/screen6-bg-overlay.png"
           alt="Background Overlay"
           fill
           unoptimized
@@ -83,17 +83,17 @@ export default function CatchScreen() {
         {/* Top Bar with Back Button and Over Counter */}
         <div className={styles.topBar}>
           <Link href="/scenario" className={styles.backButton}>
-            <Image 
-              src="/screen2-backbtn.png" 
-              alt="Back" 
-              width={44} 
-              height={44} 
+            <Image
+              src="/screen2-backbtn.png"
+              alt="Back"
+              width={44}
+              height={44}
               unoptimized
             />
           </Link>
           <div className={styles.overBadge}>
             <span className={styles.overText}>OVER</span>
-            <span className={styles.overNumber}>1/16</span>
+            <span className={styles.overNumber}>2/8</span>
           </div>
         </div>
 
@@ -110,13 +110,13 @@ export default function CatchScreen() {
             <span className={styles.scoreLabel}>RUN</span>
             <span className={styles.scoreValue}>+{runs}</span>
           </div>
-          
+
           <div className={styles.timeCircle}>
             <span className={styles.timeLabel}>TIME</span>
             <span className={styles.timeValue}>{timeLeft}</span>
             <span className={styles.timeUnit}>SEC</span>
           </div>
-          
+
           <div className={styles.scoreBox}>
             <span className={styles.scoreLabel}>CATCH</span>
             <span className={styles.scoreValue}>{catches < 10 ? `0${catches}` : catches}</span>
@@ -126,8 +126,8 @@ export default function CatchScreen() {
         {/* Play Area */}
         <div className={styles.playAreaTransparent}>
           {isPlaying ? (
-            <Image 
-              src="/screen6-bowl.png" 
+            <Image
+              src="/screen6-bowl.png"
               alt="Cricket Ball"
               width={60}
               height={60}
@@ -145,8 +145,8 @@ export default function CatchScreen() {
 
         {/* Gloves placed absolutely at the bottom, overlapping playArea but behind catchButton */}
         <div className={styles.glovesContainer}>
-          <Image 
-            src="/screen6-gloves.png" 
+          <Image
+            src="/screen6-gloves.png"
             alt="Wicket Keeper Gloves"
             width={480}
             height={300}

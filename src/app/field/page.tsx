@@ -10,24 +10,25 @@ type Fielder = {
   id: string;
   image: string;
   label: string;
-  target: { x: number, y: number }; 
+  target: { x: number, y: number };
 };
 
 const FIELDERS: Fielder[] = [
-  { id: 'keeper', image: '/screen9-keeper.png', label: 'Catch the Opportunities!', target: { x: 50, y: 70 } },
-  { id: 'slip', image: '/screen9-slip.png', label: 'Slip', target: { x: 35, y: 70 } },
-  { id: 'cover', image: '/screen--cover.png', label: 'Cover', target: { x: 20, y: 45 } },
-  { id: 'longon', image: '/screen9-longon.png', label: 'Long ON', target: { x: 80, y: 20 } },
+  { id: 'keeper', image: '/screen9-keeper.png', label: 'Catch the Opportunities!', target: { x: 50, y: 15 } },
+  { id: 'slip', image: '/screen9-slip.png', label: 'Slip', target: { x: 35, y: 15 } },
+  { id: 'cover', image: '/screen--cover.png', label: 'Cover', target: { x: 20, y: 50 } },
+  { id: 'longon', image: '/screen9-longon.png', label: 'Long ON', target: { x: 80, y: 75 } },
 ];
 
 export default function FieldScreen() {
   const router = useRouter();
   const fieldRef = useRef<HTMLDivElement>(null);
-  
+
   const [positions, setPositions] = useState<Record<string, { x: number, y: number }>>({});
   const [dragging, setDragging] = useState<string | null>(null);
   const [dragStart, setDragStart] = useState<{ x: number, y: number } | null>(null);
-  const [placed, setPlaced] = useState<string[]>([]);
+  const [placed, setPlaced] = useState<Record<string, string>>({}); // Maps fielder id to the zone id it was placed in
+  const [score, setScore] = useState(0); // Run starts from 0
 
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>, id: string) => {
     e.currentTarget.setPointerCapture(e.pointerId);
@@ -37,10 +38,10 @@ export default function FieldScreen() {
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>, id: string) => {
     if (dragging !== id || !dragStart) return;
-    
+
     const deltaX = e.clientX - dragStart.x;
     const deltaY = e.clientY - dragStart.y;
-    
+
     setPositions(prev => {
       const current = prev[id] || { x: 0, y: 0 };
       return {
@@ -51,8 +52,7 @@ export default function FieldScreen() {
         }
       };
     });
-    
-    // Update start position for the next move event
+
     setDragStart({ x: e.clientX, y: e.clientY });
   };
 
@@ -63,15 +63,29 @@ export default function FieldScreen() {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
         const rect = fieldArea.getBoundingClientRect();
-        
-        const fielder = FIELDERS.find(f => f.id === dragging)!;
-        const targetX = rect.left + (rect.width * (fielder.target.x / 100));
-        const targetY = rect.top + (rect.height * (fielder.target.y / 100));
-        
-        const dist = Math.hypot(mouseX - targetX, mouseY - targetY);
-        
-        if (dist < 80) { // Snap radius
-          setPlaced(prev => [...prev, dragging]);
+
+        let snappedZoneId: string | null = null;
+        let minDistance = Infinity;
+
+        FIELDERS.forEach(zone => {
+          const targetX = rect.left + (rect.width * (zone.target.x / 100));
+          const targetY = rect.top + (rect.height * (zone.target.y / 100));
+          const dist = Math.hypot(mouseX - targetX, mouseY - targetY);
+
+          // Only snap if distance is < 80 and the zone isn't already occupied
+          const isZoneOccupied = Object.values(placed).includes(zone.id);
+          if (dist < 80 && dist < minDistance && !isZoneOccupied) {
+            minDistance = dist;
+            snappedZoneId = zone.id;
+          }
+        });
+
+        if (snappedZoneId && !placed[dragging]) {
+          setPlaced(prev => ({ ...prev, [dragging]: snappedZoneId! }));
+          // Increase score by +4 ONLY if placed in the correct target zone
+          if (dragging === snappedZoneId) {
+            setScore(prev => prev + 4);
+          }
         }
       }
 
@@ -83,14 +97,14 @@ export default function FieldScreen() {
     }
   };
 
-  const allPlaced = placed.length === FIELDERS.length;
+  const allPlaced = Object.keys(placed).length === FIELDERS.length;
 
   return (
     <div className={styles.container}>
       {/* Background Layer */}
       <div className={styles.background}>
-        <Image 
-          src="/Screen 21.png" 
+        <Image
+          src="/Screen 21.png"
           alt="Cricket Field Background"
           fill
           priority
@@ -103,17 +117,21 @@ export default function FieldScreen() {
         {/* Top Bar with Back Button and Over Counter */}
         <div className={styles.topBar}>
           <Link href="/throw" className={styles.backButton}>
-            <Image 
-              src="/screen2-backbtn.png" 
-              alt="Back" 
-              width={44} 
-              height={44} 
+            <Image
+              src="/screen2-backbtn.png"
+              alt="Back"
+              width={44}
+              height={44}
               unoptimized
             />
           </Link>
+          <div className={styles.scoreBadge}>
+            <span className={styles.scoreLabel}>TOTAL SCORE</span>
+            <span className={styles.scoreValue}>{score} RUNS</span>
+          </div>
           <div className={styles.overBadge}>
             <span className={styles.overText}>OVER</span>
-            <span className={styles.overNumber}>1/16</span>
+            <span className={styles.overNumber}>6/8</span>
           </div>
         </div>
 
@@ -126,10 +144,10 @@ export default function FieldScreen() {
 
         {/* Field Area for Dragging */}
         <div className={styles.fieldArea} ref={fieldRef}>
-          
+
           {/* Target Zones */}
           {FIELDERS.map((f) => (
-            <div 
+            <div
               key={`target-${f.id}`}
               className={styles.targetZone}
               style={{ left: `${f.target.x}%`, top: `${f.target.y}%` }}
@@ -137,27 +155,31 @@ export default function FieldScreen() {
           ))}
 
           {/* Placed Fielders */}
-          {FIELDERS.map((f) => placed.includes(f.id) && (
-            <div 
-              key={`placed-${f.id}`}
-              className={styles.fielderPlaced}
-              style={{ left: `${f.target.x}%`, top: `${f.target.y}%` }}
-            >
-              <div className={styles.fielderImageWrapper}>
-                <Image src={f.image} alt={f.label} width={95} height={95} style={{ height: 'auto', width: '20vw', maxWidth: '95px' }} unoptimized draggable={false} />
+          {Object.entries(placed).map(([fielderId, zoneId]) => {
+            const fielder = FIELDERS.find(f => f.id === fielderId)!;
+            const zone = FIELDERS.find(f => f.id === zoneId)!;
+            return (
+              <div
+                key={`placed-${fielder.id}`}
+                className={styles.fielderPlaced}
+                style={{ left: `${zone.target.x}%`, top: `${zone.target.y}%` }}
+              >
+                <div className={styles.fielderImageWrapper}>
+                  <Image src={fielder.image} alt={fielder.label} width={95} height={95} style={{ height: 'auto', width: '20vw', maxWidth: '95px' }} unoptimized draggable={false} />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
 
           {/* Container for initial layout of fielders */}
           <div style={{ position: 'absolute', bottom: '116px', left: 0, width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end', zIndex: 20 }}>
             {FIELDERS.map((f) => {
-              const isPlaced = placed.includes(f.id);
+              const isPlaced = !!placed[f.id];
               return (
-                <div 
+                <div
                   key={f.id}
                   className={`${styles.fielder} ${dragging === f.id ? styles.dragging : ''}`}
-                  style={{ 
+                  style={{
                     transform: `translate3d(${positions[f.id]?.x || 0}px, ${positions[f.id]?.y || 0}px, 0)`,
                     position: 'relative',
                     opacity: isPlaced ? 0 : 1,
@@ -170,13 +192,13 @@ export default function FieldScreen() {
                   onPointerCancel={handlePointerUp}
                 >
                   <div className={styles.fielderImageWrapper}>
-                    <Image 
-                      src={f.image} 
-                      alt={f.label} 
+                    <Image
+                      src={f.image}
+                      alt={f.label}
                       width={95}
                       height={95}
                       style={{ height: 'auto', width: '20vw', maxWidth: '95px' }}
-                      unoptimized 
+                      unoptimized
                       draggable={false}
                     />
                   </div>
@@ -186,14 +208,14 @@ export default function FieldScreen() {
           </div>
 
           {/* Confirm Button */}
-          <button 
+          <button
             className={styles.confirmButton}
             onClick={() => {
               if (allPlaced) {
                 router.push('/question');
               }
             }}
-            style={{ 
+            style={{
               opacity: allPlaced ? 1 : 0.6,
               filter: allPlaced ? 'none' : 'grayscale(0.5)'
             }}
