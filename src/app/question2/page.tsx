@@ -59,7 +59,7 @@ export default function Question2Screen() {
       {/* Background Layer */}
       <div className={styles.background}>
         <Image 
-          src="/screen1-bg.png" 
+          src="/questions-background.png" 
           alt="Stadium Background"
           fill
           priority
