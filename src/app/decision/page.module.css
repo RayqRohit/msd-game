@@ -91,7 +91,8 @@
   max-width: 100%;
   height: auto;
   max-height: 250px;
-  transform: scale(2.2); /* Visually scale up the coin in its place */
+  transform: scale(2.2);
+  /* Visually scale up the coin in its place */
 }
 
 .callBadge {
@@ -125,9 +126,11 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  margin-top: 15px; /* Added some top margin since they are scaling up */
+  margin-top: 15px;
+  /* Added some top margin since they are scaling up */
   gap: 10px;
-  transform: scale(1.1); /* Visually scale up the cards */
+  transform: scale(1.1);
+  /* Visually scale up the cards */
 }
 
 .card {

@@ -5,7 +5,8 @@
   position: relative;
   overflow: hidden;
   background-color: #000;
-  touch-action: none; /* Prevent scroll on the entire page so drag works smoothly */
+  touch-action: none;
+  /* Prevent scroll on the entire page so drag works smoothly */
 }
 
 .background {
@@ -133,8 +134,8 @@
   cursor: grab;
   z-index: 20;
   /* Prevent text selection and drag events native to browser */
-  user-select: none; 
-  
+  user-select: none;
+
 }
 
 .fielder.dragging {
@@ -172,8 +173,15 @@
 }
 
 @keyframes popIn {
-  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
-  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
 }
 
 
@@ -195,7 +203,8 @@
   border-radius: 16px;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 8px 0px #000; /* Hard black shadow */
+  box-shadow: 0 8px 0px #000;
+  /* Hard black shadow */
   z-index: 30;
   transition: transform 0.1s, box-shadow 0.1s;
 }

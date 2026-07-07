@@ -85,7 +85,8 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: -60px; /* Shifted upwards */
+  margin-top: -60px;
+  /* Shifted upwards */
 }
 
 .coinImage {
@@ -93,7 +94,8 @@
   max-width: 100%;
   height: auto;
   max-height: 80vh;
-  transform: scale(1.5); /* Visually scale up the coin */
+  transform: scale(1.5);
+  /* Visually scale up the coin */
   transform-style: preserve-3d;
 }
 
@@ -101,8 +103,10 @@
   0% {
     transform: scale(1.5) rotateY(0deg);
   }
+
   100% {
-    transform: scale(1.5) rotateY(1800deg); /* 5 full spins */
+    transform: scale(1.5) rotateY(1800deg);
+    /* 5 full spins */
   }
 }
 

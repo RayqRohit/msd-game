@@ -85,7 +85,7 @@
   position: relative;
   box-shadow: 0 0 15px rgba(255, 214, 0, 0.4), inset 0 0 10px rgba(255, 214, 0, 0.2);
   margin-bottom: 20px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.1));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1));
 }
 
 /* Logo */
@@ -111,7 +111,7 @@
   font-weight: 900;
   font-style: italic;
   font-family: 'Satoshi Variable', sans-serif;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .gameChanger {
@@ -122,7 +122,7 @@
   font-family: 'Mona Sans', sans-serif;
   line-height: 0.9;
   text-transform: uppercase;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-bottom: 8px;
 }
 
@@ -192,7 +192,8 @@
   align-items: center;
   position: relative;
   z-index: 10;
-  margin-top: -40px; /* Overlap with jersey slightly */
+  margin-top: -40px;
+  /* Overlap with jersey slightly */
   box-shadow: 0 0 20px rgba(26, 139, 255, 0.4), inset 0 0 15px rgba(26, 139, 255, 0.2);
 }
 
@@ -218,7 +219,7 @@
   font-weight: 900;
   line-height: 1;
   font-family: 'Mona Sans Condensed', sans-serif;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .divider {
