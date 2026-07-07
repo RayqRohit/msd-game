@@ -90,7 +90,9 @@
 
 /* Logo */
 .logoContainer {
-  margin-bottom: 20px;
+  position: relative;
+  z-index: 20;
+  margin-bottom: -40px;
 }
 
 .puLogo {
@@ -100,7 +102,7 @@
 /* Typography */
 .typographySection {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .youAre {
@@ -136,7 +138,7 @@
   position: relative;
   width: 100%;
   max-width: 420px;
-  margin-top: -20px;
+  margin-top: -5px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -58,8 +58,9 @@ export default function Result() {
     if (storedName) setName(storedName);
     if (storedNumber) setNumber(storedNumber);
 
-    const storedRuns = localStorage.getItem("runs_scored");
-    if (storedRuns) setRuns(storedRuns);
+    // The user requested the main score (runs) to also randomly be between 75 and 98
+    const randomScore = Math.floor(Math.random() * (98 - 75 + 1)) + 75;
+    setRuns(randomScore.toString());
 
     // Calculate final stats
     const maxPossible = 16; // 4 questions x max 4 points
@@ -72,15 +73,18 @@ export default function Result() {
     const innovation = getStat("stats_I");
     const teamwork = getStat("stats_T");
 
-    const calcPercent = (val: number) => Math.min(100, Math.round((val / maxPossible) * 100));
+    const getRandomPercent = () => {
+      // strictly random between 76 and 98
+      return Math.floor(Math.random() * (98 - 76 + 1)) + 76;
+    };
 
     setStats([
-      { label: "Leadership", value: `${calcPercent(leadership)}%` },
-      { label: "Calmness", value: `${calcPercent(calmness)}%` },
-      { label: "Strategy", value: `${calcPercent(strategy)}%` },
-      { label: "Execution", value: `${calcPercent(execution)}%` },
-      { label: "Innovation", value: `${calcPercent(innovation)}%` },
-      { label: "Teamwork", value: `${calcPercent(teamwork)}%` },
+      { label: "Leadership", value: `${getRandomPercent()}%` },
+      { label: "Calmness", value: `${getRandomPercent()}%` },
+      { label: "Strategy", value: `${getRandomPercent()}%` },
+      { label: "Execution", value: `${getRandomPercent()}%` },
+      { label: "Innovation", value: `${getRandomPercent()}%` },
+      { label: "Teamwork", value: `${getRandomPercent()}%` },
     ]);
 
     // Determine Title based on highest combinations
@@ -114,7 +118,7 @@ export default function Result() {
   }, []);
 
   return (
-    <div className={styles.container} ref={downloadRef}>
+    <div className={styles.container}>
       {/* Background */}
       <div className={styles.background}>
         <Image
@@ -139,8 +143,19 @@ export default function Result() {
         </div>
 
         {/* Content Box with Gold Glow */}
-        <div className={styles.contentBox}>
+        <div className={styles.contentBox} ref={downloadRef}>
           
+          {/* Typography Section */}
+          <div className={styles.typographySection}>
+            <div className={styles.youAre}>YOU ARE</div>
+            <div className={styles.gameChanger}>
+              {titleParts[0]}<br/>{titleParts[1]}
+            </div>
+            <div className={styles.subtitle}>
+              {subtitle}
+            </div>
+          </div>
+
           {/* Logo */}
           <div className={styles.logoContainer}>
             <Image
@@ -151,17 +166,6 @@ export default function Result() {
               unoptimized
               className={styles.puLogo}
             />
-          </div>
-
-          {/* Typography Section */}
-          <div className={styles.typographySection}>
-            <div className={styles.youAre}>YOU ARE</div>
-            <div className={styles.gameChanger}>
-              {titleParts[0]}<br/>{titleParts[1]}
-            </div>
-            <div className={styles.subtitle}>
-              {subtitle}
-            </div>
           </div>
 
           {/* Jersey */}
@@ -188,7 +192,7 @@ export default function Result() {
           <div className={styles.statsCard}>
             
             <div className={styles.runsSection}>
-              <div className={styles.runsLabel}>RUNS SCORED</div>
+              <div className={styles.runsLabel}>SCORE</div>
               <div className={styles.runsValue}>{runs}</div>
             </div>
             
