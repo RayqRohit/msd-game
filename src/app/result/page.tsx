@@ -132,16 +132,6 @@ export default function Result() {
       </div>
 
       <main className={styles.main}>
-        {/* Header */}
-        <div className={styles.header}>
-          <Link href="/batting" className={styles.backButton}>
-            <Image src="/screen2-backbtn.svg" alt="Back" width={24} height={24} />
-          </Link>
-          <div className={styles.topBadge}>
-            MADE BY HUMANS, PLAYED BY HEROS
-          </div>
-        </div>
-
         {/* Content Box with Gold Glow */}
         <div className={styles.contentBox} ref={downloadRef}>
           

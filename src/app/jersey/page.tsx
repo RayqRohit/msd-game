@@ -6,8 +6,8 @@ import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function JerseyScreen() {
-  const [name, setName] = useState("FEARLESS");
-  const [number, setNumber] = useState("07");
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
 
   useEffect(() => {
     // Clear previous game data on fresh start
