@@ -118,6 +118,8 @@ export default function JerseyScreen() {
           <div className={styles.inputWrapper}>
             <input
               type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
               className={styles.inputField}
               placeholder="#LUCKY NO."
               value={number}
