@@ -1,9 +1,9 @@
 .container {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
   background-color: #000;
   touch-action: none;
   /* Prevent scroll on the entire page so drag works smoothly */
