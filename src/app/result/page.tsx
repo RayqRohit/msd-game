@@ -121,6 +121,7 @@ export default function Result() {
           src="/screen2-background-overlay.png"
           alt="Background"
           fill
+          priority
           unoptimized
           className={styles.bgImage}
         />

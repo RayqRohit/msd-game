@@ -95,7 +95,11 @@ export default function BattingScreen() {
     // Immediately update the display
     setRunsLeft(prev => Math.max(0, prev - hitResult.runsScored));
     setBallsLeft(prev => prev - 1);
-    setTotalRunsScored(prev => prev + hitResult.runsScored);
+    setTotalRunsScored(prev => {
+      const newTotal = prev + hitResult.runsScored;
+      localStorage.setItem('runs_scored', newTotal.toString());
+      return newTotal;
+    });
   };
 
   const handleNextBall = () => {
@@ -191,7 +195,6 @@ export default function BattingScreen() {
             {runsLeft <= 0 ? (
               <button className={styles.nextButton} onClick={(e) => { 
                 e.stopPropagation(); 
-                localStorage.setItem('runs_scored', totalRunsScored.toString());
                 router.push('/result'); 
               }}>FINISH</button>
             ) : ballsLeft === 0 ? (
