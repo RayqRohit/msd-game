@@ -1,0 +1,166 @@
+.container {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.bgImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.main {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 40px 20px;
+  flex-grow: 1;
+}
+
+.backButton {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  z-index: 10;
+  transition: transform 0.2s;
+}
+
+.backButton:hover {
+  transform: scale(1.1);
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.titleLarge {
+  color: #ffd600;
+  font-size: 56px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 2px;
+  margin: 0;
+  line-height: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: 'Arial Black', Impact, sans-serif;
+}
+
+.subtitle {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.coinWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.coinImage {
+  object-fit: contain;
+  max-width: 100%;
+  height: auto;
+  max-height: 250px;
+  transform: scale(2.2); /* Visually scale up the coin in its place */
+}
+
+.callBadge {
+  background: linear-gradient(180deg, #0d3d99 0%, #03153d 100%);
+  border: 1px solid #1a56d4;
+  border-radius: 12px;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
+}
+
+.callText {
+  color: #ffd600;
+  font-size: 16px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.starIcon {
+  color: #ffffff;
+  font-size: 23px;
+}
+
+.cardsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-top: 15px; /* Added some top margin since they are scaling up */
+  gap: 10px;
+  transform: scale(1.1); /* Visually scale up the cards */
+}
+
+.card {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.cardImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.orBadgeWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orImage {
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+}

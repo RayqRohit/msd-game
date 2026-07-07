@@ -3,7 +3,8 @@
   width: 100vw;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   background-color: #000;
   overflow: hidden;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -28,103 +29,97 @@
   z-index: 2;
   width: 100%;
   max-width: 480px;
-  /* Mobile layout constraint for desktop */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 40px 20px 40px 20px;
+  flex-grow: 1;
+}
+
+.backButton {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  z-index: 10;
+  transition: transform 0.2s;
+}
+
+.backButton:hover {
+  transform: scale(1.1);
 }
 
 .header {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 40px;
+  text-align: center;
 }
 
-.logo {
-  object-fit: contain;
-  max-width: 80%;
-  height: auto;
+.titleLarge {
+  color: #ffd600;
+  font-size: 56px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 2px;
+  margin: 0;
+  line-height: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: 'Arial Black', Impact, sans-serif;
 }
 
-.heroWrapper {
+.subtitle {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.coinWrapper {
   flex-grow: 1;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: 40px;
+  margin-top: -60px; /* Shifted upwards */
 }
 
-.heroImage {
+.coinImage {
   object-fit: contain;
   max-width: 100%;
   height: auto;
-  max-height: 60vh;
-  z-index: 2;
+  max-height: 80vh;
+  transform: scale(1.5); /* Visually scale up the coin */
+  transform-style: preserve-3d;
 }
 
-.missionPossibleText {
-  object-fit: contain;
-  width: 100%;
-  max-width: 400px; /* Slightly smaller base width */
-  height: auto;
-  margin-top: -103px; /* Pull it slightly more upside */
-  z-index: 3;
-  transform: scale(0.9); /* Make it slightly smaller */
+@keyframes flipAnimation {
+  0% {
+    transform: scale(1.5) rotateY(0deg);
+  }
+  100% {
+    transform: scale(1.5) rotateY(1800deg); /* 5 full spins */
+  }
+}
+
+.flipping {
+  animation: flipAnimation 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .bottomSection {
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 20px;
-  margin-top: -20px;
-  /* Pull bottom section up slightly if needed */
-}
-
-.bottomBgWrapper {
-  position: absolute;
-  top: -40px;
-  left: -50vw;
-  /* Stretch across the screen */
-  width: 200vw;
-  height: calc(100% + 80px);
-  z-index: 1;
-}
-
-.bottomBgImage {
-  object-fit: cover;
-  object-position: top center;
-}
-
-.bottomContent {
-  position: relative;
-  z-index: 4;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  position: relative;
+  z-index: 10;
 }
 
-.tagline {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-  max-width: 100%;
-  line-height: 1.4;
-  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.startButton {
+.flipButton {
   background: linear-gradient(180deg, #ffd600 0%, #ff9500 100%);
   color: #000000;
   font-size: 24px;
@@ -140,13 +135,18 @@
   transition: transform 0.2s ease-in-out, filter 0.2s;
   letter-spacing: 0.5px;
   font-family: 'Arial Black', Impact, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.startButton:hover {
+.flipButton:hover {
   transform: scale(1.02);
   filter: brightness(1.1);
 }
 
-.startButton:active {
+.flipButton:active {
   transform: scale(0.98);
 }

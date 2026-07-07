@@ -1,0 +1,258 @@
+.container {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.bgImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlayContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Same z-index level as background, or slightly above */
+  pointer-events: none; /* Let clicks pass through */
+}
+
+.overlayImage {
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.main {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px 40px 20px;
+  flex-grow: 1;
+}
+
+.topBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.backButton {
+  transition: transform 0.2s;
+}
+
+.backButton:hover {
+  transform: scale(1.1);
+}
+
+.overBadge {
+  border: 2px solid #ffd600;
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overText {
+  color: #ffd600;
+  font-size: 14px;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.overNumber {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.badge {
+  background: linear-gradient(180deg, #ffd600 0%, #ff9500 100%);
+  color: #000000;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 8px 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0px 4px 15px rgba(255, 187, 0, 0.4);
+}
+
+.starIcon {
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.scoreBox {
+  background: #020c1b;
+  border: 2px solid #1a56d4;
+  border-radius: 12px;
+  padding: 8px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px; /* Increased width */
+}
+
+.scoreLabel {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.scoreValue {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 900;
+  font-style: italic;
+  font-family: 'Arial Black', Impact, sans-serif;
+}
+
+.timeCircle {
+  background: #000000;
+  border: 4px solid #ff9500;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  margin: 0 -20px; /* Overlaps the score boxes */
+}
+
+.timeLabel {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.timeValue {
+  color: #ffffff;
+  font-size: 38px;
+  font-weight: 900;
+  font-style: italic;
+  font-family: 'Arial Black', Impact, sans-serif;
+  line-height: 1;
+}
+
+.timeUnit {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.playAreaTransparent {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  /* Removed the background, border, and backdrop-filter so it's fully transparent/invisible */
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.activeBall {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.1s, top 0.2s, left 0.2s; /* Add transition so the ball animates when it moves */
+  z-index: 10; /* Keep it above the invisible container bounds */
+  transform: translate(-50%, -50%); /* Center the ball on its top/left coordinate */
+}
+
+.activeBall:active {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.startText, .gameOverText {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.glovesContainer {
+  position: absolute;
+  bottom: 90px; /* Moved upwards */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none; /* Let clicks pass through to the button */
+  z-index: 5;
+}
+
+.glovesImage {
+  max-width: 85%;
+  height: auto;
+}
+
+.catchButton {
+  background: linear-gradient(180deg, #ffd600 0%, #ff9500 100%);
+  color: #000000;
+  font-size: 22px;
+  font-weight: 900;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 20px;
+  width: 100%;
+  max-width: 340px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0px 4px 15px rgba(255, 187, 0, 0.4), inset 0px 2px 4px rgba(255, 255, 255, 0.4);
+  transition: transform 0.2s ease-in-out, filter 0.2s;
+  font-family: 'Arial Black', Impact, sans-serif;
+  text-align: center;
+  margin-top: auto;
+  z-index: 10;
+}
+
+.catchButton:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+.catchButton:active {
+  transform: scale(0.98);
+}
