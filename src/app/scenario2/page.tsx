@@ -70,7 +70,7 @@ export default function Scenario2Screen() {
         <div className={styles.topBar}>
           <Link href="/catch" className={styles.backButton}>
             <Image
-              src="/screen2-backbtn.png"
+              src="/screen2-backbtn.svg"
               alt="Back"
               width={44}
               height={44}

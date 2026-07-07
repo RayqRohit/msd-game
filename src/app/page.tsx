@@ -21,7 +21,7 @@ export default function Home() {
         {/* Top Header */}
         <header className={styles.header}>
           <Image 
-            src="/parul-logo.png" 
+            src="/parul-logo.svg" 
             alt="Parul University"
             width={200}
             height={60}
@@ -41,7 +41,7 @@ export default function Home() {
             className={styles.heroImage}
           />
           <Image 
-            src="/screen1-tagline.png" 
+            src="/screen1-tagline.svg" 
             alt="Mission Possible The Game"
             width={500}
             height={300}

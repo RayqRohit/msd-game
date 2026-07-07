@@ -11,30 +11,30 @@ const QUESTIONS = [
     id: 1,
     lines: ["THE MATCH SUDDENLY", "SLIPS AWAY. WHAT'S", "YOUR REACTION?"],
     options: [
-      "Focus on the next ball",
-      "Change the tempo",
-      "Lift everyone's confidence",
-      "Find another way in"
+      { text: "Focus on the next ball", points: { L: 2, C: 4, S: 2, E: 3, I: 1, T: 1 } },
+      { text: "Change the tempo", points: { L: 2, C: 2, S: 3, E: 3, I: 4, T: 1 } },
+      { text: "Lift everyone's confidence", points: { L: 4, C: 3, S: 2, E: 2, I: 1, T: 4 } },
+      { text: "Find another way in", points: { L: 2, C: 2, S: 3, E: 2, I: 4, T: 2 } }
     ]
   },
   {
     id: 2,
     lines: ["EVERYONE AROUND YOU", "STARTS PANICKING.", "HOW WOULD YOU GUIDE", "YOUR TEAMMATES?"],
     options: [
-      "Stay silent and composed",
-      "Give clear instructions",
-      "Keep the mood light",
-      "Slow the game down"
+      { text: "Stay silent and composed", points: { L: 1, C: 4, S: 2, E: 1, I: 1, T: 2 } },
+      { text: "Give clear instructions", points: { L: 4, C: 3, S: 3, E: 3, I: 1, T: 3 } },
+      { text: "Keep the mood light", points: { L: 2, C: 3, S: 1, E: 1, I: 2, T: 4 } },
+      { text: "Slow the game down", points: { L: 2, C: 4, S: 4, E: 1, I: 1, T: 2 } }
     ]
   },
   {
     id: 3,
     lines: ["ONE OVER. ONE CHANCE.", "WHAT'S YOUR CALL?"],
     options: [
-      "Gamble on an attacking move",
-      "Back your most reliable player",
-      "Change everything at the last minute",
-      "Trust the process till the end"
+      { text: "Gamble on an attacking move", points: { L: 2, C: 1, S: 1, E: 4, I: 3, T: 1 } },
+      { text: "Back your most reliable player", points: { L: 3, C: 3, S: 2, E: 3, I: 1, T: 4 } },
+      { text: "Change everything at the last minute", points: { L: 1, C: 1, S: 2, E: 2, I: 4, T: 1 } },
+      { text: "Trust the process till the end", points: { L: 2, C: 4, S: 4, E: 2, I: 1, T: 2 } }
     ]
   }
 ];
@@ -50,6 +50,20 @@ export default function Question3Screen() {
   }, []);
 
   const handleOptionClick = (index: number) => {
+    // Save points to localStorage
+    const selectedPoints = question.options[index].points as Record<string, number>;
+    const addPoints = (key: string, val: number) => {
+      const current = parseInt(localStorage.getItem(key) || "0", 10);
+      localStorage.setItem(key, (current + val).toString());
+    };
+
+    addPoints("stats_L", selectedPoints.L);
+    addPoints("stats_C", selectedPoints.C);
+    addPoints("stats_S", selectedPoints.S);
+    addPoints("stats_E", selectedPoints.E);
+    addPoints("stats_I", selectedPoints.I);
+    addPoints("stats_T", selectedPoints.T);
+
     // Navigate to throw screen
     router.push("/throw");
   };
@@ -73,7 +87,7 @@ export default function Question3Screen() {
         <div className={styles.topBar}>
           <Link href="/catch" className={styles.backButton}>
             <Image
-              src="/screen2-backbtn.png"
+              src="/screen2-backbtn.svg"
               alt="Back"
               width={44}
               height={44}
@@ -119,7 +133,7 @@ export default function Question3Screen() {
                   unoptimized
                   draggable={false}
                 />
-                <span className={styles.optionText}>{opt}</span>
+                <span className={styles.optionText}>{opt.text}</span>
               </div>
             ))}
           </div>

@@ -10,6 +10,7 @@ export default function BattingScreen() {
   const router = useRouter();
   const [runsLeft, setRunsLeft] = useState(14);
   const [ballsLeft, setBallsLeft] = useState(4);
+  const [totalRunsScored, setTotalRunsScored] = useState(0);
 
   const [ballPosition, setBallPosition] = useState(50); // 0 to 100%
   const [direction, setDirection] = useState<1 | -1>(1);
@@ -94,6 +95,7 @@ export default function BattingScreen() {
     // Immediately update the display
     setRunsLeft(prev => Math.max(0, prev - hitResult.runsScored));
     setBallsLeft(prev => prev - 1);
+    setTotalRunsScored(prev => prev + hitResult.runsScored);
   };
 
   const handleNextBall = () => {
@@ -122,7 +124,7 @@ export default function BattingScreen() {
         <div className={styles.topBar}>
           <Link href="/question4" className={styles.backButton}>
             <Image
-              src="/screen2-backbtn.png"
+              src="/screen2-backbtn.svg"
               alt="Back"
               width={44}
               height={44}
@@ -187,7 +189,11 @@ export default function BattingScreen() {
             <div className={styles.resultRuns}>+{result.runsScored} RUNS</div>
 
             {runsLeft <= 0 ? (
-              <button className={styles.nextButton} onClick={(e) => { e.stopPropagation(); alert("WINNER!"); }}>FINISH</button>
+              <button className={styles.nextButton} onClick={(e) => { 
+                e.stopPropagation(); 
+                localStorage.setItem('runs_scored', totalRunsScored.toString());
+                router.push('/result'); 
+              }}>FINISH</button>
             ) : ballsLeft === 0 ? (
               <button className={styles.nextButton} onClick={(e) => { e.stopPropagation(); window.location.reload(); }}>TRY AGAIN</button>
             ) : (

@@ -67,6 +67,7 @@
   font-size: 14px;
   font-weight: 900;
   font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
 }
 
 .overNumber {
@@ -74,20 +75,22 @@
   font-size: 14px;
   font-weight: 900;
   font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
 }
 
 .badge {
-  background: linear-gradient(180deg, #ffd600 0%, #ff9500 100%);
+  background: linear-gradient(90deg, #FFC800 0%, #FFAA00 100%);
   color: #000000;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
+  font-family: 'Satoshi', sans-serif;
   padding: 8px 24px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 25px;
-  box-shadow: 0px 4px 15px rgba(255, 187, 0, 0.4);
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(255, 200, 0, 0.8);
 }
 
 .starIcon {
@@ -246,7 +249,7 @@
 .throwButton {
   background: linear-gradient(180deg, #ffd600 0%, #ff9500 100%);
   color: #000000;
-  font-size: 18px;
+  font-size: 28px;
   font-weight: 900;
   border: none;
   border-radius: 12px;
@@ -257,7 +260,7 @@
   cursor: pointer;
   box-shadow: 0px 4px 15px rgba(255, 187, 0, 0.4), inset 0px 2px 4px rgba(255, 255, 255, 0.4);
   transition: transform 0.2s ease-in-out, filter 0.2s;
-  font-family: 'Arial Black', Impact, sans-serif;
+  font-family: 'Mona Sans Condensed', sans-serif;
   text-align: center;
   z-index: 10;
   margin-top: 10px;

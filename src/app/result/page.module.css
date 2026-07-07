@@ -1,0 +1,317 @@
+.container {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+  background-color: #0b1120;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.bgImage {
+  object-fit: cover;
+}
+
+.main {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 20px 40px;
+}
+
+/* Header */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.backButton {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(255, 214, 0, 0.3);
+}
+
+.topBadge {
+  border: 2px solid #ffd600;
+  border-radius: 20px;
+  padding: 6px 16px;
+  color: #ffd600;
+  font-size: 10px;
+  font-weight: 800;
+  font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Content Box */
+.contentBox {
+  width: 100%;
+  border: 2px solid #ffd600;
+  border-radius: 12px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 0 15px rgba(255, 214, 0, 0.4), inset 0 0 10px rgba(255, 214, 0, 0.2);
+  margin-bottom: 20px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.1));
+}
+
+/* Logo */
+.logoContainer {
+  margin-bottom: 20px;
+}
+
+.puLogo {
+  object-fit: contain;
+}
+
+/* Typography */
+.typographySection {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.youAre {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 900;
+  font-style: italic;
+  font-family: 'Satoshi Variable', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.gameChanger {
+  color: #ffd600;
+  font-size: 56px;
+  font-weight: 900;
+  font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
+  line-height: 0.9;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Satoshi Variable', sans-serif;
+}
+
+/* Jersey */
+.jerseyWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin-top: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.jerseyImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.jerseyTextLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.jerseyName {
+  color: #ffd600;
+  font-size: 24px;
+  font-weight: 800;
+  margin-top: 38%;
+  text-transform: uppercase;
+  font-family: 'Mona Sans Condensed', sans-serif;
+  letter-spacing: 1px;
+}
+
+.jerseyNumber {
+  color: #ffd600;
+  font-size: 92px;
+  font-weight: 900;
+  line-height: 0.7;
+  font-family: 'Mona Sans Condensed', sans-serif;
+}
+
+/* Stats Card */
+.statsCard {
+  width: 100%;
+  background: rgba(0, 15, 40, 0.9);
+  border: 1px solid #1a8bff;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  margin-top: -40px; /* Overlap with jersey slightly */
+  box-shadow: 0 0 20px rgba(26, 139, 255, 0.4), inset 0 0 15px rgba(26, 139, 255, 0.2);
+}
+
+.runsSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.runsLabel {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Satoshi Variable', sans-serif;
+  margin-bottom: 5px;
+}
+
+.runsValue {
+  color: #ffd600;
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1;
+  font-family: 'Mona Sans Condensed', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.divider {
+  width: 1px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 15px;
+}
+
+.statsSection {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-family: 'Satoshi Variable', sans-serif;
+  font-size: 10px;
+  color: #ffffff;
+}
+
+.statLabel {
+  width: 70px;
+  font-weight: 500;
+}
+
+.statBarContainer {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  margin: 0 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.statBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #ffd600;
+  border-radius: 2px;
+}
+
+.statValue {
+  width: 30px;
+  text-align: right;
+  font-weight: 600;
+}
+
+/* Action Buttons */
+.actionButtons {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.downloadBtn {
+  flex: 1.2;
+  background-color: #ffd600;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  padding: 15px 10px;
+  font-size: 24px;
+  font-weight: 900;
+  font-family: 'Mona Sans Condensed', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.playAgainBtn {
+  flex: 1;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffd600;
+  border-radius: 8px;
+  padding: 15px 10px;
+  font-size: 25px;
+  font-weight: 900;
+  font-family: 'Mona Sans Condensed', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.footerText {
+  color: #a0a0a0;
+  font-size: 11px;
+  text-align: center;
+  font-family: 'Satoshi Variable', sans-serif;
+  margin-top: 5px;
+}

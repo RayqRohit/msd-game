@@ -11,30 +11,30 @@ const QUESTIONS = [
     id: 1,
     lines: ["A TEAMMATE MAKES THE", "SAME MISTAKE TWICE.", "WHAT WOULD YOU DO?"],
     options: [
-      "Encourage them",
-      "Give them responsibility",
-      "Leave them alone for now",
-      "Help them improve"
+      { text: "Encourage them", points: { L: 3, C: 3, S: 1, E: 1, I: 1, T: 4 } },
+      { text: "Give them responsibility", points: { L: 4, C: 2, S: 2, E: 2, I: 1, T: 3 } },
+      { text: "Leave them alone for now", points: { L: 1, C: 2, S: 1, E: 2, I: 2, T: 1 } },
+      { text: "Help them improve", points: { L: 3, C: 3, S: 3, E: 3, I: 1, T: 4 } }
     ]
   },
   {
     id: 2,
     lines: ["A STAR PLAYER IS", "HAVING AN OFF DAY.", "WHAT WOULD YOU ADVICE THEM?"],
     options: [
-      "Keep backing them",
-      "Replace them, no matter who they are",
-      "Reduce the pressure on them",
-      "Let them prove themselves"
+      { text: "Keep backing them", points: { L: 3, C: 3, S: 1, E: 1, I: 1, T: 4 } },
+      { text: "Replace them, no matter who they are", points: { L: 2, C: 1, S: 3, E: 4, I: 1, T: 1 } },
+      { text: "Reduce the pressure on them", points: { L: 2, C: 4, S: 2, E: 1, I: 1, T: 3 } },
+      { text: "Let them prove themselves", points: { L: 4, C: 3, S: 2, E: 2, I: 2, T: 2 } }
     ]
   },
   {
     id: 3,
     lines: ["YOUR TEAMMATE WANTS", "TO TAKE A RISKY SHOT.", "WOULD YOU APPROVE?"],
     options: [
-      "Back them",
-      "Suggest a safer option",
-      "Ask what they're thinking",
-      "Let them decide"
+      { text: "Back them", points: { L: 3, C: 2, S: 1, E: 2, I: 2, T: 4 } },
+      { text: "Suggest a safer option", points: { L: 2, C: 4, S: 3, E: 2, I: 1, T: 2 } },
+      { text: "Ask what they're thinking", points: { L: 3, C: 3, S: 4, E: 1, I: 2, T: 3 } },
+      { text: "Let them decide", points: { L: 1, C: 2, S: 1, E: 2, I: 4, T: 2 } }
     ]
   }
 ];
@@ -50,6 +50,20 @@ export default function Question4Screen() {
   }, []);
 
   const handleOptionClick = (index: number) => {
+    // Save points to localStorage
+    const selectedPoints = question.options[index].points as Record<string, number>;
+    const addPoints = (key: string, val: number) => {
+      const current = parseInt(localStorage.getItem(key) || "0", 10);
+      localStorage.setItem(key, (current + val).toString());
+    };
+
+    addPoints("stats_L", selectedPoints.L);
+    addPoints("stats_C", selectedPoints.C);
+    addPoints("stats_S", selectedPoints.S);
+    addPoints("stats_E", selectedPoints.E);
+    addPoints("stats_I", selectedPoints.I);
+    addPoints("stats_T", selectedPoints.T);
+
     // Navigate to field screen
     router.push("/field");
   };
@@ -73,7 +87,7 @@ export default function Question4Screen() {
         <div className={styles.topBar}>
           <Link href="/throw" className={styles.backButton}>
             <Image
-              src="/screen2-backbtn.png"
+              src="/screen2-backbtn.svg"
               alt="Back"
               width={44}
               height={44}
@@ -119,7 +133,7 @@ export default function Question4Screen() {
                   unoptimized
                   draggable={false}
                 />
-                <span className={styles.optionText}>{opt}</span>
+                <span className={styles.optionText}>{opt.text}</span>
               </div>
             ))}
           </div>

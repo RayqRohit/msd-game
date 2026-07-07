@@ -118,7 +118,7 @@ export default function FieldScreen() {
         <div className={styles.topBar}>
           <Link href="/throw" className={styles.backButton}>
             <Image
-              src="/screen2-backbtn.png"
+              src="/screen2-backbtn.svg"
               alt="Back"
               width={44}
               height={44}

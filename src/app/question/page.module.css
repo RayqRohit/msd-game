@@ -59,14 +59,18 @@
 
 .overText {
   color: #ffd700;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 14px;
+  font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
 }
 
 .overNumber {
   color: #fff;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 14px;
+  font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
 }
 
 .contentWrapper {
@@ -78,17 +82,18 @@
 }
 
 .leadershipBadge {
-  background: linear-gradient(180deg, #ffeb3b 0%, #ffc107 100%);
+  background: linear-gradient(90deg, #FFC800 0%, #FFAA00 100%);
   color: #000;
-  font-weight: 800;
-  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
   padding: 8px 15px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+  box-shadow: 0 0 15px rgba(255, 200, 0, 0.8);
   margin-bottom: 40px;
   text-align: center;
   line-height: 1.3;
@@ -100,6 +105,7 @@
 
 .starIcon {
   font-size: 12px;
+  color: #fff;
 }
 
 .questionTitle {
@@ -115,6 +121,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Mona Sans', sans-serif;
 }
 
 .questionLine {
@@ -149,7 +156,7 @@
   transition: transform 0.2s;
   background: transparent;
   border: none;
-  padding-left: 90px; /* Leave space for the hexagon on the left */
+  padding-left: 80px; /* Leave space for the hexagon on the left */
   padding-right: 20px;
 }
 
@@ -170,4 +177,5 @@
   font-size: 16px;
   font-style: italic;
   text-align: left;
+  font-family: 'Mona Sans', sans-serif;
 }

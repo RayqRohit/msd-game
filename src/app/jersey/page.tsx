@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
@@ -8,6 +8,19 @@ import styles from "./page.module.css";
 export default function JerseyScreen() {
   const [name, setName] = useState("FEARLESS");
   const [number, setNumber] = useState("07");
+
+  useEffect(() => {
+    // Clear previous game data on fresh start
+    ["stats_L", "stats_C", "stats_S", "stats_E", "stats_I", "stats_T", "runs_scored"].forEach(k => localStorage.removeItem(k));
+  }, []);
+
+  useEffect(() => {
+    if (name) localStorage.setItem("userName", name);
+  }, [name]);
+
+  useEffect(() => {
+    if (number) localStorage.setItem("userNumber", number);
+  }, [number]);
 
   return (
     <div className={styles.container}>
@@ -33,11 +46,11 @@ export default function JerseyScreen() {
       <main className={styles.main}>
         {/* Back Button */}
         <Link href="/" className={styles.backButton}>
-          <Image 
-            src="/screen2-backbtn.png" 
-            alt="Back" 
-            width={44} 
-            height={44} 
+          <Image
+            src="/screen2-backbtn.svg"
+            alt="Back"
+            width={44}
+            height={44}
             unoptimized
           />
         </Link>
@@ -54,7 +67,7 @@ export default function JerseyScreen() {
         {/* Jersey Area */}
         <div className={styles.jerseyWrapper}>
           <Image
-            src="/screen2-jersey.png"
+            src="/tshirt_blue.png"
             alt="Jersey"
             width={400}
             height={500}
@@ -64,28 +77,28 @@ export default function JerseyScreen() {
           />
           {/* Dynamic Text on Jersey */}
           <div className={styles.jerseyTextLayer}>
-            <Image
+            {/* <Image
               src="/screen2-parul-logo.png"
               alt="Parul University"
               width={60}
               height={30}
               unoptimized
               className={styles.jerseyParulLogo}
-            />
+            /> */}
             <div className={styles.jerseyName}>
               {name || "YOUR NAME"}
             </div>
             <div className={styles.jerseyNumber}>
               {number || "00"}
             </div>
-            <Image
+            {/* <Image
               src="/screen2-sign.png"
               alt="Signature"
               width={60}
               height={40}
               unoptimized
               className={styles.jerseySign}
-            />
+            /> */}
           </div>
         </div>
 

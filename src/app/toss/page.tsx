@@ -13,7 +13,7 @@ export default function TossScreen() {
   const handleFlip = () => {
     if (isFlipping) return;
     setIsFlipping(true);
-    
+
     // Wait for the 2 second animation to complete before navigating
     setTimeout(() => {
       router.push('/decision');
@@ -24,8 +24,8 @@ export default function TossScreen() {
     <div className={styles.container}>
       {/* Background Layer */}
       <div className={styles.background}>
-        <Image 
-          src="/screen3-background.png" 
+        <Image
+          src="/screen3-background.png"
           alt="Stadium Pitch Background"
           fill
           priority
@@ -37,11 +37,11 @@ export default function TossScreen() {
       <main className={styles.main}>
         {/* Back Button */}
         <Link href="/jersey" className={styles.backButton}>
-          <Image 
-            src="/screen2-backbtn.png" 
-            alt="Back" 
-            width={44} 
-            height={44} 
+          <Image
+            src="/screen2-backbtn.svg"
+            alt="Back"
+            width={44}
+            height={44}
             unoptimized
           />
         </Link>
@@ -54,8 +54,8 @@ export default function TossScreen() {
 
         {/* Coin Area */}
         <div className={styles.coinWrapper}>
-          <Image 
-            src="/screen3-coin1.png" 
+          <Image
+            src="/screen3-coin1.png"
             alt="Coin"
             width={600}
             height={600}

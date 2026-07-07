@@ -56,8 +56,8 @@ export default function ScenarioScreen() {
     <div className={styles.container}>
       {/* Background Layer */}
       <div className={styles.background}>
-        <Image 
-          src="/screen5-background.png" 
+        <Image
+          src="/screen5-background.png"
           alt="Night Stadium Background"
           fill
           priority
@@ -70,11 +70,11 @@ export default function ScenarioScreen() {
         {/* Top Bar with Back Button and Over Counter */}
         <div className={styles.topBar}>
           <Link href="/decision" className={styles.backButton}>
-            <Image 
-              src="/screen2-backbtn.png" 
-              alt="Back" 
-              width={44} 
-              height={44} 
+            <Image
+              src="/screen2-backbtn.svg"
+              alt="Back"
+              width={44}
+              height={44}
               unoptimized
             />
           </Link>
@@ -102,8 +102,8 @@ export default function ScenarioScreen() {
           {currentScenario.options.map((option) => (
             <Link href="/catch" key={option.id} className={styles.optionCard}>
               <div className={styles.optionImageWrapper}>
-                <Image 
-                  src={option.image} 
+                <Image
+                  src={option.image}
                   alt={`Option ${option.id}`}
                   fill
                   unoptimized

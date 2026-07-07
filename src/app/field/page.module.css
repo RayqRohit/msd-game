@@ -83,20 +83,25 @@
 
 .overText {
   color: #ffd700;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 14px;
+  font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
 }
 
 .overNumber {
   color: #fff;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 14px;
+  font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
 }
 
 .badge {
-  background: linear-gradient(180deg, #ffeb3b 0%, #ffc107 100%);
+  background: linear-gradient(90deg, #FFC800 0%, #FFAA00 100%);
   color: #000;
-  font-weight: 800;
+  font-weight: 700;
+  font-family: 'Satoshi', sans-serif;
   font-size: 14px;
   padding: 8px 20px;
   border-radius: 8px;
@@ -104,12 +109,13 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+  box-shadow: 0 0 15px rgba(255, 200, 0, 0.8);
   margin: 0 auto;
 }
 
 .starIcon {
   font-size: 12px;
+  color: #fff;
 }
 
 .fieldArea {
@@ -182,8 +188,8 @@
   background: linear-gradient(180deg, #ffeb3b 0%, #ffc107 100%);
   color: #000;
   font-weight: 900;
-  font-family: 'Arial Black', Impact, sans-serif; /* Thick condensed font */
-  font-size: 14px;
+  font-family: 'Mona Sans Condensed', sans-serif;
+  font-size: 28px;
   padding: 20px 10px;
   border: none;
   border-radius: 16px;

@@ -57,32 +57,39 @@
 
 .overText {
   color: #ffb800;
-  font-weight: 800;
+  font-weight: 900;
   font-size: 14px;
+  font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
 }
 
 .overNumber {
   color: #fff;
-  font-weight: bold;
+  font-weight: 900;
   font-size: 14px;
+  font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
 }
 
 .badge {
-  background: linear-gradient(180deg, #ffd700 0%, #ffb800 100%);
-  padding: 8px 24px;
+  background: linear-gradient(90deg, #FFC800 0%, #FFAA00 100%);
+  color: #000;
+  font-weight: 700;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  padding: 8px 15px;
   border-radius: 8px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-weight: bold;
-  color: #000;
-  font-size: 14px;
-  margin-bottom: 10px;
-  box-shadow: 0 0 15px rgba(255, 184, 0, 0.4);
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 0 15px rgba(255, 200, 0, 0.8);
+  margin-bottom: 20px;
 }
 
 .starIcon {
   font-size: 12px;
+  color: #fff;
 }
 
 .scoreContainer {
@@ -97,6 +104,7 @@
   font-size: 56px;
   font-weight: 900;
   font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
   line-height: 1;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
@@ -106,6 +114,7 @@
   font-size: 24px;
   font-weight: 900;
   font-style: italic;
+  font-family: 'Mona Sans', sans-serif;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
@@ -167,11 +176,12 @@
 
 .tapInstruction {
   color: #fff;
-  font-size: 17px;
+  font-size: 25px;
   font-weight: 800;
   text-transform: uppercase;
   text-align: center;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  font-family: 'Mona Sans Condensed', sans-serif;
 }
 
 .resultOverlay {
@@ -216,7 +226,8 @@
   color: #000;
   border: none;
   padding: 10px 30px;
-  font-size: 16px;
+  font-size: 28px;
+  font-family: 'Mona Sans Condensed', sans-serif;
   font-weight: bold;
   border-radius: 25px;
   cursor: pointer;
