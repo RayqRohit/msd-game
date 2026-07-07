@@ -51,7 +51,7 @@ export default function QuestionScreen() {
 
   const handleOptionClick = (index: number) => {
     // For now, after selecting an option, we can redirect back to scenario or the next part of the game
-    router.push("/scenario2"); 
+    router.push("/batting"); 
   };
 
   return (
