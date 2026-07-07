@@ -17,14 +17,6 @@ export default function ThrowScreen() {
   
   const [swipeStart, setSwipeStart] = useState<{ x: number; y: number; ball: BallPosition } | null>(null);
 
-  useEffect(() => {
-    if (vanishedBalls.length === 3) {
-      setTimeout(() => {
-        router.push('/question');
-      }, 500); // Small delay before transition
-    }
-  }, [vanishedBalls, router]);
-
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>, ball: BallPosition) => {
     // If already thrown or vanished, ignore
     if (thrownBalls[ball] || vanishedBalls.includes(ball)) return;
@@ -169,6 +161,11 @@ export default function ThrowScreen() {
           <button 
             className={styles.throwButton} 
             onClick={() => {
+              if (Object.keys(thrownBalls).length === 3) {
+                router.push('/question4');
+                return;
+              }
+
               // Find next unthrown ball
               const nextBall = !thrownBalls['center'] ? 'center' : !thrownBalls['left'] ? 'left' : !thrownBalls['right'] ? 'right' : null;
               if (nextBall) {
@@ -193,9 +190,8 @@ export default function ThrowScreen() {
                 }, 800);
               }
             }}
-            disabled={Object.keys(thrownBalls).length === 3}
           >
-            {Object.keys(thrownBalls).length === 3 ? "ALL THROWN!" : "THROW BALL TO STUMPS"}
+            {Object.keys(thrownBalls).length === 3 ? "SET YOUR FIELD" : "THROW BALL TO STUMPS"}
           </button>
         </div>
       </main>

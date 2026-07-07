@@ -4,42 +4,42 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import styles from "./page.module.css";
+import styles from "../question/page.module.css";
 
 const QUESTIONS = [
   {
     id: 1,
-    lines: ["YOU SPOT A WEAKNESS", "IN THE OPPOSITION THAT", "NO ONE ELSE HAS", "NOTICED."],
+    lines: ["A TEAMMATE MAKES THE", "SAME MISTAKE TWICE.", "WHAT WOULD YOU DO?"],
     options: [
-      "Exploit it immediately",
-      "Keep it to yourself until the right moment.",
-      "Tell the captain and plan together",
-      "Wait to see if it happens again"
+      "Encourage them",
+      "Give them responsibility",
+      "Leave them alone for now",
+      "Help them improve"
     ]
   },
   {
     id: 2,
-    lines: ["YOU'RE CONVINCED", "YOUR IDEA WILL WORK,", "BUT EVERYONE", "DISAGREES"],
+    lines: ["A STAR PLAYER IS", "HAVING AN OFF DAY.", "WHAT WOULD YOU ADVICE THEM?"],
     options: [
-      "Go ahead with it anyway",
-      "Hear everyone out before deciding",
-      "Drop the idea and support the team",
-      "Blend your idea with theirs"
+      "Keep backing them",
+      "Replace them, no matter who they are",
+      "Reduce the pressure on them",
+      "Let them prove themselves"
     ]
   },
   {
     id: 3,
-    lines: ["A RISKY MOVE COULD", "WIN THE MATCH. WOULD", "YOU TAKE YOUR", "CHANCES?"],
+    lines: ["YOUR TEAMMATE WANTS", "TO TAKE A RISKY SHOT.", "WOULD YOU APPROVE?"],
     options: [
-      "Take it",
-      "Calculate it first",
-      "Wait for the right moment",
-      "Create a different opportunity"
+      "Back them",
+      "Suggest a safer option",
+      "Ask what they're thinking",
+      "Let them decide"
     ]
   }
 ];
 
-export default function QuestionScreen() {
+export default function Question4Screen() {
   const router = useRouter();
   const [question, setQuestion] = useState(QUESTIONS[0]);
 
@@ -50,8 +50,8 @@ export default function QuestionScreen() {
   }, []);
 
   const handleOptionClick = (index: number) => {
-    // For now, after selecting an option, we can redirect back to scenario or the next part of the game
-    router.push("/scenario2"); 
+    // Navigate to field screen
+    router.push("/field"); 
   };
 
   return (
@@ -71,7 +71,7 @@ export default function QuestionScreen() {
       <main className={styles.main}>
         {/* Top Bar with Back Button and Over Counter */}
         <div className={styles.topBar}>
-          <Link href="/field" className={styles.backButton}>
+          <Link href="/throw" className={styles.backButton}>
             <Image 
               src="/screen2-backbtn.png" 
               alt="Back" 
@@ -90,7 +90,7 @@ export default function QuestionScreen() {
           {/* Action Badge */}
           <div className={styles.leadershipBadge}>
             <span className={styles.starIcon}>★</span>
-            <span className={styles.badgeText}>Instinct or Plan?</span>
+            <span className={styles.badgeText}>Leadership & emotional intelligence</span>
             <span className={styles.starIcon}>★</span>
           </div>
 

@@ -1,0 +1,176 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+  touch-action: none; /* Prevent scroll on the entire page so drag works smoothly */
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.bgImage {
+  object-fit: cover;
+  object-position: top;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+  padding: 20px;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.backButton {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.backButton:hover {
+  transform: scale(1.05);
+}
+
+.overBadge {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #ffd700;
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.overText {
+  color: #ffd700;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.overNumber {
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.badge {
+  background: linear-gradient(180deg, #ffeb3b 0%, #ffc107 100%);
+  color: #000;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+  margin: 0 auto;
+}
+
+.starIcon {
+  font-size: 12px;
+}
+
+.fieldArea {
+  flex: 1;
+  position: relative;
+  width: 100%;
+}
+
+.fielder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  touch-action: none;
+  cursor: grab;
+  z-index: 20;
+  /* Prevent text selection and drag events native to browser */
+  user-select: none; 
+  
+}
+
+.fielder.dragging {
+  cursor: grabbing;
+  z-index: 100;
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.fielderImageWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.fielderPlaced {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.targetZone {
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+@keyframes popIn {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+
+
+.confirmButton {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 400px;
+  background: linear-gradient(180deg, #ffeb3b 0%, #ffc107 100%);
+  color: #000;
+  font-weight: 900;
+  font-family: 'Arial Black', Impact, sans-serif; /* Thick condensed font */
+  font-size: 14px;
+  padding: 20px 10px;
+  border: none;
+  border-radius: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 0px #000; /* Hard black shadow */
+  z-index: 30;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.confirmButton:active {
+  transform: translateX(-50%) translateY(4px);
+  box-shadow: 0 4px 0px #000;
+}

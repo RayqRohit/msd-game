@@ -59,7 +59,7 @@ export default function DecisionScreen() {
 
         {/* Cards Section */}
         <div className={styles.cardsContainer}>
-          <Link href="/scenario" className={styles.card}>
+          <Link href="/question2" className={styles.card}>
             <Image 
               src="/screen4-batting.png" 
               alt="Batting"
@@ -81,7 +81,7 @@ export default function DecisionScreen() {
             />
           </div>
           
-          <Link href="/scenario" className={styles.card}>
+          <Link href="/question2" className={styles.card}>
             <Image 
               src="/screen4-bowling.png" 
               alt="Bowling"

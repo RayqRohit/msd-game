@@ -22,7 +22,7 @@ export default function CatchScreen() {
           if (prev <= 1) {
             setIsPlaying(false);
             setTimeout(() => {
-              router.push("/question");
+              router.push("/question3");
             }, 1500);
             return 0;
           }
