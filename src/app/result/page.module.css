@@ -281,10 +281,10 @@
   font-weight: 600;
 }
 
-/* Action Buttons */
 .actionButtons {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 15px;
 }

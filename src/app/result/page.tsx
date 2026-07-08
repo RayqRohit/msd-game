@@ -38,7 +38,33 @@ export default function Result() {
       
       const dataUrl = canvas.toDataURL("image/png");
       
-      // Use native share on iOS/Android for perfect mobile experience
+      // Trigger direct download
+      const link = document.createElement("a");
+      link.download = "mission-possible-result.png";
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error("Failed to download image", err);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  const handleShare = async () => {
+    if (!downloadRef.current) return;
+    setIsDownloading(true);
+    
+    try {
+      const canvas = await html2canvas(downloadRef.current, {
+        useCORS: true,
+        scale: 2,
+        backgroundColor: "#0b1120",
+      });
+      
+      const dataUrl = canvas.toDataURL("image/png");
+      
       if (navigator.share) {
         try {
           const blob = await (await fetch(dataUrl)).blob();
@@ -48,23 +74,16 @@ export default function Result() {
               files: [file],
               title: "My Result",
             });
-            setIsDownloading(false);
             return;
           }
         } catch (e) {
           console.log("Share skipped or failed", e);
         }
+      } else {
+        alert("Native sharing is not supported on this device/browser.");
       }
-
-      // Fallback for desktop / older browsers
-      const link = document.createElement("a");
-      link.download = "mission-possible-result.png";
-      link.href = dataUrl;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
     } catch (err) {
-      console.error("Failed to download image", err);
+      console.error("Failed to share image", err);
     } finally {
       setIsDownloading(false);
     }
